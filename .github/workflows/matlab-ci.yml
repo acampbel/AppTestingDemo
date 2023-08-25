@@ -35,7 +35,7 @@ jobs:
         run: mkdir /opt/mpm && wget -O /opt/mpm/mpm https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x /opt/mpm/mpm && ln -s /opt/mpm/mpm /usr/local/bin/mpm
       
       - name: Install MATLAB
-        run: wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm && ./mpm install --release=r2023b --destination=/opt/matlab --release-status Prerelease --products  MATLAB Parallel_Computing_Toolbox  && rm /tmp/mathworks_root.log && ln -s /opt/matlab/bin/matlab /usr/local/bin/matlab
+        run: wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm && ./mpm install --release=r2023b --destination=/opt/matlab --release-status Prerelease --products  MATLAB Parallel_Computing_Toolbox  && ln -s /opt/matlab/bin/matlab /usr/local/bin/matlab
       
       - name: Install matlab-batch
         run: wget -qO- --retry-connrefused https://ssd.mathworks.com/supportfiles/ci/matlab-batch/v0/install.sh | bash -s
