@@ -32,7 +32,7 @@ jobs:
       
       # Sets up MATLAB on the GitHub Actions runner
       - name: Get MATLAB deps
-        run: wget -qO- --retry-connrefused https://ssd.mathworks.com/supportfiles/ci/matlab-deps/v0/install.sh | bash -s  -- "r2023a"
+        run: wget -qO- --retry-connrefused https://ssd.mathworks.com/supportfiles/ci/matlab-deps/v0/install.sh | sudo -E bash -s  -- "r2023a"
       
       - name: Get MPM
         run: mkdir /opt/mpm && wget -O /opt/mpm/mpm https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x /opt/mpm/mpm && ln -s /opt/mpm/mpm /usr/local/bin/mpm
