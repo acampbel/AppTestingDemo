@@ -42,7 +42,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /opt/matlab
-          key: r2023b
+          key: r2023a
       
       - name: Install MATLAB
         if: ${{ steps.cache-matlab.outputs.cache-hit != 'true' }}
