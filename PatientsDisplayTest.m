@@ -101,7 +101,7 @@ classdef PatientsDisplayTest < matlab.uitest.TestCase
     end
     methods(Access=private)
         function logScreenshot(testCase, prefix)
-            testCase.log(1, ScreenshotDiagnostic(Prefix=prefix));
+            testCase.log(1, [prefix, ScreenshotDiagnostic(Prefix=prefix)]);
         end
     end
 
