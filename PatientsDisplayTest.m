@@ -82,7 +82,7 @@ classdef PatientsDisplayTest < matlab.uitest.TestCase
             % Verify the number of displayed data sets and the number of
             % scatter points
             testCase.verifyNumElements(ax.Children,1)
-            testCase.verifyNumElements(ax.Children.XData,50)
+            testCase.verifyNumElements(ax.Children.XData,53)
         end
     end
 end
