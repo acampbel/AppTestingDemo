@@ -33,6 +33,13 @@ jobs:
       # Sets up MATLAB on the GitHub Actions runner
       - name: Get MATLAB deps
         run: mkdir /opt/mpm && wget -O /opt/mpm/mpm https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x /opt/mpm/mpm && ln -s /opt/mpm/mpm /usr/local/bin/mpm
+
+      - name: Cache MATLAB
+        id: cache-matlab
+        uses: actions/cache@v3
+        with:
+          path: /opt/matlab
+          key: r2023a
       
       - name: Install MATLAB
         run: wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm && ./mpm install --release=r2023b --destination=/opt/matlab --release-status Prerelease --products  MATLAB Parallel_Computing_Toolbox  && ln -s /opt/matlab/bin/matlab /usr/local/bin/matlab
