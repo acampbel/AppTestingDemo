@@ -31,8 +31,14 @@ jobs:
           echo "DISPLAY=:99" >> $GITHUB_ENV
       
       # Sets up MATLAB on the GitHub Actions runner
-      - name: Setup MATLAB
-        uses: matlab-actions/setup-matlab@v1
+      - name: Get MATLAB deps
+        run: mkdir /opt/mpm && wget -O /opt/mpm/mpm https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x /opt/mpm/mpm && ln -s /opt/mpm/mpm /usr/local/bin/mpm
+      
+      - name: Install MATLAB
+        run: wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm && ./mpm install --release=r2023b --destination=/opt/matlab --release-status Prerelease --products  MATLAB Parallel_Computing_Toolbox  && rm /tmp/mathworks_root.log && ln -s /opt/matlab/bin/matlab /usr/local/bin/matlab
+      
+      - name: Install matlab-batch
+        run: wget -qO- --retry-connrefused https://ssd.mathworks.com/supportfiles/ci/matlab-batch/v0/install.sh | bash -s
 
       # Runs a set of commands using the runners shell
       - name: Run all tests
