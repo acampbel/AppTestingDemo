@@ -101,11 +101,7 @@ classdef PatientsDisplayTest < matlab.uitest.TestCase
     end
     methods(Access=private)
         function logScreenshot(testCase, prefix)
-            args = {};
-            if nargin > 1
-                args = {"Prefix", prefix};
-            end
-            testCase.log(1, ScreenshotDiagnostic, args{:});
+            testCase.log(1, ScreenshotDiagnostic(Prefix=prefix));
         end
     end
 
