@@ -23,6 +23,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      - name: Start display server
+        run: |
+          sudo apt-get install xvfb
+          Xvfb :99 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
       
       # Sets up MATLAB on the GitHub Actions runner
       - name: Setup MATLAB
@@ -34,6 +40,16 @@ jobs:
         with:
           source-folder: pwd
           test-results-pdf: artifacts/test-results.pdf
+       
+      - name: Run MATLAB command
+        uses: matlab-actions/run-command@v1
+        with:
+          command: |
+            export("sample.mlx", "artifacts/sample.pdf");
+        
+      - uses: actions/upload-artifact@v3
+        with:
+          path: artifacts
                     
 
       # As an alternative to run-tests, you can use run-command to execute a MATLAB script, function, or statement.
