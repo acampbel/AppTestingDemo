@@ -8,6 +8,9 @@ classdef PatientsDisplayTest < matlab.uitest.TestCase
             testCase.App = PatientsDisplay;
             testCase.addTeardown(@delete,testCase.App)
         end
+        function takeScreenshotOnFailure(testCase)
+            testCase.onFailure(matlab.unittest.diagnostics.ScreenshotDiagnostic)
+        end
     end
 
     methods (Test)
@@ -60,10 +63,7 @@ classdef PatientsDisplayTest < matlab.uitest.TestCase
         end
 
         function testGender(testCase)
-            % Take a screenshot if the test fails
-            import matlab.unittest.diagnostics.ScreenshotDiagnostic
-            testCase.onFailure(ScreenshotDiagnostic)
-
+            
             % Verify the number of male scatter points
             ax = testCase.App.UIAxes;
             testCase.verifyNumElements(ax.Children.XData,47)
