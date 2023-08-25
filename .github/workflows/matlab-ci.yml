@@ -45,6 +45,7 @@ jobs:
           key: r2023a
       
       - name: Install MATLAB
+        if: ${{ steps.cache-matlab.outputs.cache-hit != 'true' }}
         run: wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm && ./mpm install --release=r2023b --destination=/opt/matlab --release-status Prerelease --products  MATLAB Parallel_Computing_Toolbox  && ln -s /opt/matlab/bin/matlab /usr/local/bin/matlab
       
       - name: Install matlab-batch
