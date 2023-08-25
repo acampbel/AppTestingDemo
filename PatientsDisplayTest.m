@@ -36,7 +36,7 @@ classdef PatientsDisplayTest < matlab.uitest.TestCase
             testCase.choose(testCase.App.BinWidthSlider,9)
 
             % Verify the number of bins
-            testCase.verifyEqual(testCase.App.UIAxes.Children.NumBins,4)
+            testCase.verifyEqual(testCase.App.UIAxes.Children.NumBins,5)
         end
 
         function testBloodPressure(testCase)
