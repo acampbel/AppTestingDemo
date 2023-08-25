@@ -55,12 +55,14 @@ jobs:
           test-results-pdf: artifacts/test-results.pdf
        
       - name: Run MATLAB command
+        if: always()
         uses: matlab-actions/run-command@v1
         with:
           command: |
             export("sample.mlx", "artifacts/sample.pdf");
         
       - uses: actions/upload-artifact@v3
+        if: always()
         with:
           path: artifacts
                     
