@@ -32,6 +32,9 @@ jobs:
       
       # Sets up MATLAB on the GitHub Actions runner
       - name: Get MATLAB deps
+        run: wget -qO- --retry-connrefused https://ssd.mathworks.com/supportfiles/ci/matlab-deps/v0/install.sh | bash -s  -- "r2023b"
+      
+      - name: Get MPM
         run: mkdir /opt/mpm && wget -O /opt/mpm/mpm https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x /opt/mpm/mpm && ln -s /opt/mpm/mpm /usr/local/bin/mpm
 
       - name: Cache MATLAB
