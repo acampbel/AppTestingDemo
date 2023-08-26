@@ -101,13 +101,17 @@ classdef PatientsDisplayTest < matlab.uitest.TestCase
     end
     methods(Access=private)
         function logScreenshot(testCase, prefix)
-            testCase.log(1, [prefix, ScreenshotDiagnostic(Prefix=prefix)]);
+            fig = testCase.App.PatientsDisplayUIFigure;
+            testCase.log(1, [prefix, FigureDiagnostic(fig, ...
+                Prefix=prefix, Formats="png")]);
         end
     end
 
 end
 
-
+function d = FigureDiagnostic(varargin)
+d = matlab.unittest.diagnostics.FigureDiagnostic(varargin{:});
+end
 
 function d = ScreenshotDiagnostic(varargin)
 d = matlab.unittest.diagnostics.ScreenshotDiagnostic(varargin{:});
