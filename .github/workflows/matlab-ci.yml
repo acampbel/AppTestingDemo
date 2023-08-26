@@ -64,7 +64,8 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: always()
         with:
-          path: /test-results.pdf
+          name: Test Results
+          path: test-results.pdf
        
       - name: Run MATLAB command
         if: always()
@@ -76,6 +77,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: always()
         with:
+          name: Live Script Report
           path: exportedLiveScript.html
                     
 
