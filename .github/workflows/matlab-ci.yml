@@ -59,30 +59,24 @@ jobs:
         uses: matlab-actions/run-tests@v1
         with:
           source-folder: pwd
-          test-results-pdf: artifacts/test-results.pdf
+          test-results-pdf: test-results.pdf
 
       - uses: actions/upload-artifact@v3
         if: always()
         with:
-          path: artifacts/test-results.pdf
+          path: /test-results.pdf
        
       - name: Run MATLAB command
         if: always()
         uses: matlab-actions/run-command@v1
         with:
           command: |
-            export("sample.mlx", "artifacts/exportedLiveScript.html");
+            export("sample.mlx", "exportedLiveScript.html");
         
       - uses: actions/upload-artifact@v3
         if: always()
         with:
-          path: artifacts/exportedLiveScript.html
-
-      - uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: AllArtifacts
-          path: artifacts
+          path: exportedLiveScript.html
                     
 
       # As an alternative to run-tests, you can use run-command to execute a MATLAB script, function, or statement.
