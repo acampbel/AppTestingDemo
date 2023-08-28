@@ -42,7 +42,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /opt/matlab
-          key: r2023a
+          key: r2023b
       
       - name: Install MATLAB
         if: ${{ steps.cache-matlab.outputs.cache-hit != 'true' }}
@@ -59,19 +59,26 @@ jobs:
         uses: matlab-actions/run-tests@v1
         with:
           source-folder: pwd
-          test-results-pdf: artifacts/test-results.pdf
+          test-results-pdf: test-results.pdf
+
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: Test Results
+          path: test-results.pdf
        
       - name: Run MATLAB command
         if: always()
         uses: matlab-actions/run-command@v1
         with:
           command: |
-            export("sample.mlx", "artifacts/sample.pdf");
+            export("sample.mlx", "exportedLiveScript.html");
         
       - uses: actions/upload-artifact@v3
         if: always()
         with:
-          path: artifacts
+          name: Live Script Report
+          path: exportedLiveScript.html
                     
 
       # As an alternative to run-tests, you can use run-command to execute a MATLAB script, function, or statement.
