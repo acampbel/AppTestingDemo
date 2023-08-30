@@ -170,6 +170,7 @@ jobs:
       # Commit all changed files back to the repository
       - name: Produce MD from MLX
         uses: stefanzweifel/git-auto-commit-action@v4
+        with:
           file_pattern: '*.md'
 
                     
