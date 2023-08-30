@@ -78,12 +78,12 @@ jobs:
         uses: matlab-actions/run-command@v1
         with:
           command: |
-            export("sample.mlx", ["sample.md", "exportedLiveScript.html"]);
+            export("sample.mlx", "sample.md");
         
       - uses: actions/upload-artifact@v3
         with:
           name: Live Script Report
-          path: exportedLiveScript.html
+          path: exportedLiveScript.md
                     
       # Commit all changed files back to the repository
       - name: Produce MD from MLX
