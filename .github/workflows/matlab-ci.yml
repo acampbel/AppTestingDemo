@@ -54,6 +54,13 @@ jobs:
       - name: Install matlab-batch
         run: wget -qO- --retry-connrefused https://ssd.mathworks.com/supportfiles/ci/matlab-batch/v0/install.sh | bash -s
 
+      - name: Export README
+        uses: matlab-actions/run-command@v1
+        with:
+          command: |
+            export("README.mlx", "README.md");
+
+
       # Runs a set of commands using the runners shell
       - name: Run all tests
         continue-on-error: true
@@ -67,11 +74,11 @@ jobs:
           name: Test Results
           path: test-results.pdf
        
-      - name: Run MATLAB command
+      - name: Export sample live script
         uses: matlab-actions/run-command@v1
         with:
           command: |
-            export("sample.mlx", "exportedLiveScript.html");
+            export("sample.mlx", ["sample.md", "exportedLiveScript.html"]);
         
       - uses: actions/upload-artifact@v3
         with:
