@@ -62,7 +62,7 @@ jobs:
       - name: Produce MD from MLX
         uses: matlab-actions/run-command@v1
         with:
-          command: "export('README.mlx', 'README.md'), export('sample.mlx', 'sample.md')"
+          command: "export('README.mlx', 'README.md'), export('sample.mlx', 'sample.md'), dir"
       
       # Commit all changed files back to the repository
       - name: Commit markdown
