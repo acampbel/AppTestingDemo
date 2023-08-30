@@ -47,8 +47,8 @@ classdef PatientsDisplayTest < matlab.uitest.TestCase
             testCase.verifyEqual(testCase.App.UIAxes.Children.NumBins,4);
             
             % Highlight a failure
-            %testCase.verifyEqual(testCase.App.UIAxes.Children.NumBins,5, ...
-            %    "Deliberate failure to highlight screenshot on failure");
+            testCase.verifyEqual(testCase.App.UIAxes.Children.NumBins,5, ...
+                "Deliberate failure to highlight screenshot on failure");
         end
 
         function testBloodPressure(testCase)
