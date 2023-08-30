@@ -60,40 +60,31 @@ jobs:
         run: wget -qO- --retry-connrefused https://ssd.mathworks.com/supportfiles/ci/matlab-batch/v0/install.sh | bash -s
 
       - name: Produce MD from MLX
-        uses: matlab-actions/run-command@v1
+        uses: matlab-actions/run-build@v1
         with:
-          command: "export('README.mlx', 'README.md'), export('sample.mlx', 'sample.ipynb'), dir"
+          tasks: markdown jupyter
       
-      # Commit all changed files back to the repository
       - name: Commit markdown
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          file_pattern: 'README*'
-
-
-                # Commit all changed files back to the repository
-      - name: Commit markdown
+          file_pattern: '**/*.md'
+                
+      - name: Commit jupyter
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          file_pattern: '*.ipynb'
+          file_pattern: '**/*.ipynb'
 
       # Runs a set of commands using the runners shell
       - name: Run all tests
         continue-on-error: true
-        uses: matlab-actions/run-tests@v1
+        uses: matlab-actions/run-build@v1
         with:
-          source-folder: pwd
-          test-results-pdf: test-results.pdf
+          tasks: test
 
       - uses: actions/upload-artifact@v3
         with:
           name: Test Results
           path: test-results.pdf
-        
-      - uses: actions/upload-artifact@v3
-        with:
-          name: Live Script Report
-          path: exportedLiveScript.md
                     
 
 
