@@ -67,7 +67,12 @@ jobs:
       - name: Commit markdown
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          file_pattern: '*.md'
+          file_pattern: 'README*'
+
+      - name: Commit markdown
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: 'sample*'
                 
       - name: Commit jupyter
         uses: stefanzweifel/git-auto-commit-action@v4
