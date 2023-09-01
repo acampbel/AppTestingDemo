@@ -4,10 +4,12 @@ import matlab.buildtool.tasks.*;
 plan = buildplan(localfunctions);
 
 plan("clean") = CleanTask;
-plan("test") = TestTask(TestResults="test-results.pdf");
+plan("test") = TestTask(TestResults=["test-results.pdf", "test-results.mat"]);
 
 plan("markdown").Inputs = "**/*.mlx";
 plan("markdown").Outputs = replace(plan("markdown").Inputs, ".mlx",".md");
+plan("markdown").Outputs(end+1) = replace(plan("markdown").Inputs, ".mlx","_media");
+plan("markdown").Outputs(end+1) = "mdOutputs.txt";
 
 plan("jupyter").Inputs = "**/*.mlx";
 plan("jupyter").Outputs = replace(plan("jupyter").Inputs, ".mlx",".ipynb");
@@ -18,11 +20,13 @@ function markdownTask(ctx)
 % Generate markdown from all mlx files
 
 mlxFiles = ctx.Task.Inputs.paths;
-mdFiles = ctx.Task.Outputs.paths;
+mdFiles = ctx.Task.Outputs(1).paths;
 for idx = 1:numel(mlxFiles) 
     disp("Building markdown file from " + mlxFiles(idx))
     export(mlxFiles(idx), mdFiles(idx), Run=true, EmbedImages=false);
 end
+
+writelines(ctx.Task.Outputs.paths,"mdOutputs.txt");
 end
 
 function jupyterTask(ctx)
