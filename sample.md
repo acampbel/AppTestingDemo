@@ -27,5 +27,5 @@ a = 10x10
 surf(peaks)
 ```
 
-<center><img src="sample_media/figure_0.png" width="562" alt="figure_0.png"></center>
+<center><img src="sample_media/figure_0.png" width="585" alt="figure_0.png"></center>
 
