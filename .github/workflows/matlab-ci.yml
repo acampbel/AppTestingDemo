@@ -29,36 +29,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Cache MATLAB
+        id: cache-matlab
+        uses: actions/cache@v3
+        with:
+          path: ${{ runner.tool_cache }}/MATLAB
+          key: r2023b
+      
+      # Sets up MATLAB on the GitHub Actions runner
+      - name: Setup MATLAB
+        uses: matlab-actions/setup-matlab@v2-beta
+
       - name: Start display server
         run: |
           sudo apt-get install xvfb
           Xvfb :99 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
-      
-      # Sets up MATLAB on the GitHub Actions runner
-      - name: Get MATLAB deps
-        run: wget -qO- --retry-connrefused https://ssd.mathworks.com/supportfiles/ci/matlab-deps/v0/install.sh | sudo -E bash -s  -- "r2023a"
-      
-      - name: Get MPM
-        run: mkdir /opt/mpm && wget -O /opt/mpm/mpm https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x /opt/mpm/mpm && ln -s /opt/mpm/mpm /usr/local/bin/mpm
 
-      - name: Cache MATLAB
-        id: cache-matlab
-        uses: actions/cache@v3
-        with:
-          path: /opt/matlab
-          key: r2023b
-      
-      - name: Install MATLAB
-        if: ${{ steps.cache-matlab.outputs.cache-hit != 'true' }}
-        run: wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm && ./mpm install --release=r2023b --destination=/opt/matlab --release-status Prerelease --products  MATLAB Parallel_Computing_Toolbox 
-
-      - name: Symlink MATLAB
-        run: ln -s /opt/matlab/bin/matlab /usr/local/bin/matlab
-      
-      - name: Install matlab-batch
-        run: wget -qO- --retry-connrefused https://ssd.mathworks.com/supportfiles/ci/matlab-batch/v0/install.sh | bash -s
-
+    
       - name: Produce MD from MLX
         uses: matlab-actions/run-build@v1
         with:
