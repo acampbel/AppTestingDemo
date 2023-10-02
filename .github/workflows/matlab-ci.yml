@@ -29,16 +29,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Cache MATLAB
-        id: cache-matlab
-        uses: actions/cache@v3
-        with:
-          path: ${{ runner.tool_cache }}/MATLAB
-          key: r2023b
-      
       # Sets up MATLAB on the GitHub Actions runner
       - name: Setup MATLAB
         uses: matlab-actions/setup-matlab@v2-beta
+        with:
+          cache: true
 
       - name: Start display server
         run: |
