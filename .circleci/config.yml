@@ -1,0 +1,58 @@
+version: 2.1
+orbs:
+  matlab: mathworks/matlab@dev:v1-beta
+  codecov: codecov/codecov@3.2.3
+
+
+jobs:
+  test:
+    parameters:
+      version:
+        description: "MATLAB version"
+        default: "latest"
+        type: string
+    machine:
+      image: ubuntu-2204:current
+    steps:
+      - checkout
+      - matlab/install:
+          release: <<parameters.version>>
+          products: |
+            MATLAB
+            Simulink
+            Image_Processing_Toolbox
+            Instrument_Control_Toolbox
+            MATLAB_Coder
+            Mapping_Toolbox
+            Optimization_Toolbox
+            Partial_Differential_Equation_Toolbox
+            Statistics_and_Machine_Learning_Toolbox
+            Symbolic_Math_Toolbox
+      - matlab/run-command:
+          command: ver
+      - matlab/run-tests:
+          test-results-junit: artifacts/junit/testResults.xml
+          test-results-pdf: artifacts/test-report.pdf
+          test-results-html: artifacts/test-report.html
+          code-coverage-cobertura: artifacts/coverage/codeCoverage.xml
+          code-coverage-html: artifacts/coverage/html
+      # Leverage the build tool to execute your pipeline (requires a buildfile.m in your repo root)
+      #- matlab/run-build: 
+      #    tasks: test
+      - store_test_results:
+          path: artifacts/junit
+      - store_artifacts: 
+          path: artifacts
+      - codecov/upload:
+          file: artifacts/coverage/codeCoverage.xml
+          
+
+workflows:
+  matrix-tests:
+    jobs:
+      - test:
+          name: test-<<matrix.version>>
+          matrix:
+            parameters:
+              version:
+                - R2023b
