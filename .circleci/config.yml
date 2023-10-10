@@ -36,7 +36,7 @@ jobs:
           test-results-html: artifacts/test-report.html
           code-coverage-cobertura: artifacts/coverage/codeCoverage.xml
           code-coverage-html: artifacts/coverage/html
-          source-folder: code
+          source-folder: .
       # Leverage the build tool to execute your pipeline (requires a buildfile.m in your repo root)
       #- matlab/run-build: 
       #    tasks: test
