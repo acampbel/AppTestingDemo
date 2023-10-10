@@ -39,8 +39,6 @@ jobs:
             Xvfb :99
             echo 'export DISPLAY=:99' >> "$BASH_ENV"
             source "$BASH_ENV"
-      - matlab/run-build:
-          tasks: test
       - matlab/run-tests:
           test-results-junit: artifacts/junit/testResults.xml
           test-results-pdf: artifacts/test-report.pdf
@@ -48,6 +46,9 @@ jobs:
           code-coverage-cobertura: artifacts/coverage/codeCoverage.xml
           code-coverage-html: artifacts/coverage/html
           source-folder: code
+      # Leverage the build tool to execute your pipeline (requires a buildfile.m in your repo root)
+      #- matlab/run-build: 
+      #    tasks: test
       - store_test_results:
           path: artifacts/junit
       - store_artifacts: 
