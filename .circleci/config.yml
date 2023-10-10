@@ -30,15 +30,6 @@ jobs:
             Symbolic_Math_Toolbox
       - matlab/run-command:
           command: ver
-      - run:
-          name: Set up display server
-          # Add source command to execute code and make variables
-          # available in current step.
-          command: |
-            sudo apt-get install xvfb 
-            Xvfb :99
-            echo 'export DISPLAY=:99' >> "$BASH_ENV"
-            source "$BASH_ENV"
       - matlab/run-tests:
           test-results-junit: artifacts/junit/testResults.xml
           test-results-pdf: artifacts/test-report.pdf
