@@ -42,7 +42,7 @@ jobs:
           cache: true
 
       - name: Start display server
-        if: ${{ matrix.platform == 'unbuntu-latest' }}
+        if: ${{ ${{ matrix.platform }} == 'unbuntu-latest' }}
         run: |
           sudo apt-get install xvfb
           Xvfb :99 &
