@@ -55,16 +55,19 @@ jobs:
           tasks: markdown jupyter
       
       - name: Commit markdown
+        if: ${{ matrix.platform == 'ubuntu-latest' }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: 'README*'
 
       - name: Commit markdown
+        if: ${{ matrix.platform == 'ubuntu-latest' }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: 'sample*'
                 
       - name: Commit jupyter
+        if: ${{ matrix.platform == 'ubuntu-latest' }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: '*.ipynb'
