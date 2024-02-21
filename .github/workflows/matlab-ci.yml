@@ -64,7 +64,7 @@ jobs:
         if: ${{ matrix.platform == 'ubuntu-latest' }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          file_pattern: '*_media'
+          file_pattern: '*_media/*'
                 
       - name: Commit jupyter
         if: ${{ matrix.platform == 'ubuntu-latest' }}
