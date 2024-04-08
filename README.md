@@ -1,14 +1,13 @@
 
-# <span style="color:rgb(213,80,0)">Simple Demo of the App Testing Framework</span>
+# Simple Demo of the App Testing Framework
 
 This is a simple demo of the App Testing Framework, highlighting usage on GitHub hosted runners and generating a report that includes snapshots.
 
 
-<p style="text-align:left"><img src="README_media/image_0.png" width="1204" alt="image_0.png"></p>
+![image_0.png](README_media/image_0.png)
 
 ```matlab
 penny
 ```
 
-<center><img src="README_media/figure_0.png" width="585" alt="figure_0.png"></center>
-
+![figure_0.png](README_media/figure_0.png)

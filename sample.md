@@ -1,5 +1,5 @@
 
-# <span style="color:rgb(213,80,0)">A script with some output</span>
+# A script with some output
 
 Let's see some live script output
 
@@ -8,7 +8,7 @@ Let's see some live script output
 a = magic(10)
 ```
 
-```TextOutput
+```matlabTextOutput
 a = 10x10    
     92    99     1     8    15    67    74    51    58    40
     98    80     7    14    16    73    55    57    64    41
@@ -20,6 +20,7 @@ a = 10x10
     79     6    13    95    97    29    31    38    45    72
     10    12    94    96    78    35    37    44    46    53
     11    18   100    77    84    36    43    50    27    59
+
 ```
 
 ```matlab
@@ -27,5 +28,4 @@ a = 10x10
 surf(peaks)
 ```
 
-<center><img src="sample_media/figure_0.png" width="585" alt="figure_0.png"></center>
-
+![figure_0.png](sample_media/figure_0.png)
