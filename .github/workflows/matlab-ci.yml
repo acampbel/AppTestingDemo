@@ -41,7 +41,7 @@ jobs:
         with:
           cache: true
 
-      - name: Setuo display
+      - name: Setup display
         uses: pyvista/setup-headless-display-action@v2
         with:
           pyvista: false
